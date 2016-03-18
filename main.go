@@ -13,7 +13,13 @@ func main() {
 	filepath.Walk(configuration.HtmlRoot, loadInMemory) //load files on memory.
 
 	fmt.Println("Listening on ", configuration.Listener, " with html root as ", configuration.HtmlRoot, " ...")
-
 	http.HandleFunc("/", handler)
 	http.ListenAndServe(configuration.Listener, nil)
+}
+
+func printMemoryFiles() {
+	fmt.Println("Loaded files in memory:")
+	for key, _ := range memoryFiles {
+		fmt.Println(key)
+	}
 }
